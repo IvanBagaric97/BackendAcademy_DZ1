@@ -104,8 +104,13 @@ function end_table(): void{
     $allAttrs = "<tr" . get_attributes($params) . ">";
 
     $content = $params["contents"] ?? [];
-    foreach($content as $c){
-        $allAttrs .= $c;
+
+    if(gettype($content) === "string"){
+        $allAttrs .= $content;
+    }else {
+        foreach ($content as $c) {
+            $allAttrs .= $c;
+        }
     }
     $allAttrs .= "</tr>";
 
@@ -125,8 +130,13 @@ function end_table(): void{
 
     $content = $params["contents"] ?? [];
     $cell = "";
-    foreach($content as $c){
-        $cell .= $allAttrs . $c . "</td>";
+
+    if(gettype($content) === "string") {
+        $cell .= $allAttrs . $content . "</td>";
+    }else {
+        foreach ($content as $c) {
+            $cell .= $allAttrs . $c . "</td>";
+        }
     }
 
     return $cell;
@@ -146,7 +156,12 @@ function end_table(): void{
     if ($closed) $element .= ">";
 
     $content = $params["contents"] ?? [];
-    foreach($content as $c) $element .= $c;
+
+    if(gettype($content) === "string") {
+        $element .= $content;
+    }else {
+        foreach ($content as $c) $element .= $c;
+    }
     $element = $closed ? $element . "</" . $name . ">" : $element . ">";
 
     return $element;
