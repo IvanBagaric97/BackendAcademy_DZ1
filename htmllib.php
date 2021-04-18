@@ -162,7 +162,7 @@ function end_table(): void{
     }else {
         foreach ($content as $c) $element .= $c;
     }
-    $element = $closed ? $element . "</" . $name . ">" : $element . ">";
+    $element = $closed ? $element . "</" . $name . ">" : $element . ">";   #pazi jel ide /
 
     return $element;
 }
